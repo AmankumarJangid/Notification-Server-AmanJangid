@@ -8,6 +8,13 @@ spring:
 
   kafka:
     bootstrap-servers: ${KAFKA_SERVER_URL}
+    properties:
+      security:
+        protocol: SASL_SSL
+        sasl:
+          mechanism: SCRAM-SHA-256
+          jaas:
+            config: org.apache.kafka.common.security.scram.ScramLoginModule required username="avnadmin" password=${KAFKA_SERVER_PASSWORD};
     consumer:
       auto-offset-reset: earliest
       group-id : notification-group
@@ -18,9 +25,11 @@ spring:
         "[spring.json.trusted.packages]": ${KAFKA_TRUSTED_PACKAGES}
         "[spring.json.value.default.type]": "dev.gamgrind.Notification_Utility.dto.EmailNotificationEvent"
         "[spring.json.use.type.headers]": false
+
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
 
 
   mail:
