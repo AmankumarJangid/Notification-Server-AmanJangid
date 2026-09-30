@@ -11,14 +11,13 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("notification/v1")
 @AllArgsConstructor
 public class EmailController {
 
 
     private final EmailService emailService;
 
-    @GetMapping("/health")
+    @GetMapping("/")
     private ResponseEntity<String> healthCheck(){return ResponseEntity.ok("Status : OK");}
 
 
