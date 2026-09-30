@@ -20,19 +20,21 @@ public class EmailService {
 
     public final JavaMailSender mailSender;
 
-    public void sendMail(String to, String subject, String body ) throws MessagingException {
+    public void sendMail(String to, String subject, String body) {
         logger.info("[Inside the Email Service] ");
-        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        try {
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 
-        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-        helper.setTo(to);
-        helper.setSubject(subject);
+            helper.setTo(to);
+            helper.setSubject(subject);
+            helper.setText(body, true);
 
-
-        helper.setText(body, true);
-
-        mailSender.send(mimeMessage);
-        logger.info("[Inside the Email Service] : Email Sent ");
+            mailSender.send(mimeMessage);
+            logger.info("[Inside the Email Service] : Email Sent ");
+        } catch (MessagingException e) {
+            logger.error("[Inside the Email Service] : Failed to send email to " + to, e);
+        }
     }
 
     // A helper method that holds your HTML structure as a String block
