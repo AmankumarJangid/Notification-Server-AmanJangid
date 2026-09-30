@@ -26,7 +26,9 @@ public class EmailController {
     private ResponseEntity<EmailNotificationEvent> postEmail(@RequestBody EmailNotificationEvent message){
         try{
             emailService.sendMail(message.getEmail() , message.getSubject(), message.getMessage());
-        } catch (MessagingException e) {
+//        } catch (MessagingException e) {
+//            throw new RuntimeException(e);
+        } catch( Exception e ){
             throw new RuntimeException(e);
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(message);

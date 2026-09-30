@@ -24,7 +24,7 @@ public class EmailConsumer {
         try{
         emailService.sendMail(message.getEmail() , message.getSubject(), message.getMessage());
 
-        } catch (MessagingException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
