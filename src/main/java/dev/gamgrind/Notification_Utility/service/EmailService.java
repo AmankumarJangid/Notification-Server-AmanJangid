@@ -54,9 +54,7 @@ public class EmailService {
             CreateEmailResponse data = resend.emails().send(params);
             System.out.println(data.getId());
             logger.info("[Inside the Email Service] : Email Sent ");
-//        } catch (MessagingException e) {
-//            logger.error("[Inside the Email Service] : Error occurred while sending email", e);
-//            throw e; // Rethrows the exception to the caller
+
         }
         catch ( ResendException e ){
             logger.error("[Inside the Email Service] : Resend Exception : {}", e.getMessage() );
