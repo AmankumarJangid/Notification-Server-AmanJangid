@@ -32,7 +32,7 @@ public class EmailService {
 
             mailSender.send(mimeMessage);
             logger.info("[Inside the Email Service] : Email Sent ");
-        } catch (MessagingException e) {
+        } catch (Exception e) {
             logger.error("[Inside the Email Service] : Failed to send email to " + to, e);
         }
     }
