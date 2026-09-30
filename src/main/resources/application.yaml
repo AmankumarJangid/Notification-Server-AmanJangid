@@ -41,3 +41,5 @@ spring:
       mail.smtp.auth: true
       mail.smtp.starttls.enable : true
 
+logging.level.root :
+
