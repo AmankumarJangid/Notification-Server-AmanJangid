@@ -41,7 +41,9 @@ spring:
       mail.smtp.auth: true
       mail.smtp.starttls.enable : true
 
+
 #logging.level.root : ${LOGGING}
 resend:
   apiKey : ${RESEND_API_KEY}
+  domain : ${RESEND_DOMAIN}
 

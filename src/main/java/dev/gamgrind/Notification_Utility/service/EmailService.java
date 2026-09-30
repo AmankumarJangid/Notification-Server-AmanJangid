@@ -24,8 +24,8 @@ public class EmailService {
     public final Logger logger = LoggerFactory.getLogger(EmailService.class);
     public final Resend resend;
 
-    @Value("${spring.mail.username}")
-    private String fromEmail;
+    @Value("${resend.domain}")
+    private String domain;
 
     public final JavaMailSender mailSender;
 
@@ -36,7 +36,7 @@ public class EmailService {
         logger.info("[Inside the Email Service] ");
 
         CreateEmailOptions params = CreateEmailOptions.builder()
-                .from("Aman <mail@amanjangid.me>")
+                .from(String.format("Aman <mail@%s>", domain))
                 .to(to)
                 .subject(subject)
                 .html(body)
@@ -63,21 +63,5 @@ public class EmailService {
             throw e;
         }
     }
-
-//    void sendEmail(){
-//        Resend resend = new Resend("re_dmfcLCiq_K8kiWZgGNGW8rBjMp6op9Eyo");
-//
-//        CreateEmailOptions params = CreateEmailOptions.builder()
-//                .from("onboarding@resend.dev")
-//                .to("amanjangid7847@gmail.com")
-//                .subject("Hello World")
-//                .html("<p>Congrats on sending your <strong>first email</strong>!</p>")
-//                .build();
-//
-//        CreateEmailResponse data = resend.emails().send(params);
-//    }
-
-
-    // A helper method that holds your HTML structure as a String block
 
 }
